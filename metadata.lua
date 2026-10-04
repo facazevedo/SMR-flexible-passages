@@ -6,7 +6,7 @@ return PlaceObj('ModDef', {
 	'last_changes', "Updated compatibility for game 1.1.1. Prevents refreshing or releasing anchors before a passage has started.",
 	'id', "FlexiblePassages",
 	'author', "fredware",
-	'version', 13,
+	'version', 14,
 	'lua_revision', 350453,
 	'saved_with_revision', 405907,
 	'code', {
@@ -19,10 +19,10 @@ return PlaceObj('ModDef', {
 		"Code/fp_lifecycle.lua",
 		"Code/FlexiblePassages.lua",
 	},
-	'saved', 1782961392,
-	'code_hash', -841050084844505724,
+	'saved', 1791074698,
+	'code_hash', 5302649286544129337,
 	'pdx_id', 146318,
-	'pdx_version', "1",
+	'pdx_version', "2",
 	'steam_id', "3755970210",
 	'TagGameplay', true,
 })
