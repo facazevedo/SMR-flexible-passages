@@ -1,0 +1,10 @@
+# Local editor files and generated artifacts
+.vscode/
+.idea/
+.cache/
+tmp/
+*.bak
+*.tmp
+*.log
+*.luac
+__pycache__/
