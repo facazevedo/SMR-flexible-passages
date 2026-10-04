@@ -188,7 +188,7 @@ local function AppendCurrentPointsAsFixedBend(controller, clicked_pt)
 	if cfg.ENABLE_FLEXIBLE_PASSAGE_CONSTRUCTION ~= true then
 		return false, "feature_disabled"
 	end
-	if controller == nil or controller.mode ~= "passage_grid" or controller.starting_point == nil then
+	if controller == nil or controller.mode ~= "passage_grid" or not controller.starting_point then
 		return false, "not_active_passage_construction"
 	end
 	if type(controller.current_points) ~= "table" or #controller.current_points == 0 then
@@ -314,7 +314,13 @@ function ConstructionRules.TryReleaseFixedPoint(controller, pt)
 	if cfg.ENABLE_FLEXIBLE_PASSAGE_CONSTRUCTION ~= true or cfg.ENABLE_FIXED_POINT_RELEASE ~= true then
 		return false, "feature_disabled"
 	end
-	if controller == nil or controller.mode ~= "passage_grid" or controller.starting_point == nil then
+	if controller == nil or controller.mode ~= "passage_grid" or not controller.starting_point then
+		local log = Debug()
+		if log then
+			log.Info("Construction", "Fixed point release skipped", {
+				reason = "not_active_passage_construction",
+			})
+		end
 		return false, "not_active_passage_construction"
 	end
 
@@ -424,7 +430,7 @@ function ConstructionRules.ApplyModBehavior(reason)
 		local activate_pt = pt
 		if ShouldSnapPassagePoint(self) == true then
 			activate_pt = SnapPointToHexCenter(self, pt)
-			if self.starting_point ~= nil and type(self.UpdateVisuals) == "function" then
+			if self.starting_point and type(self.UpdateVisuals) == "function" then
 				self.last_update_hex = false
 				self:UpdateVisuals(activate_pt)
 			end
@@ -434,7 +440,7 @@ function ConstructionRules.ApplyModBehavior(reason)
 			local can_complete = type(self.CanCompletePassage) == "function" and self:CanCompletePassage() == true
 			DebugVanilla("Passage Activate after snapped preview", {
 				click_hex = PointHexString(activate_pt),
-				started = self.starting_point ~= nil,
+				started = self.starting_point and true or false,
 				can_complete = can_complete,
 				current_points = CountTableValues(self.current_points),
 				placed_points = CountTableValues(self.placed_points),
@@ -443,7 +449,7 @@ function ConstructionRules.ApplyModBehavior(reason)
 				statuses = StatusSummary(self),
 			})
 
-			if self.starting_point ~= nil and can_complete ~= true then
+			if self.starting_point and can_complete ~= true then
 				local fixed, fix_reason = AppendCurrentPointsAsFixedBend(self, activate_pt)
 				DebugVanilla("Passage intermediate click decision", {
 					click_hex = PointHexString(activate_pt),

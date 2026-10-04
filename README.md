@@ -18,8 +18,8 @@ the game to clear cached data.
 
 ## Version and compatibility
 
-This repository starts with metadata version **12**, runtime **1.0.4**,
-from the compatibility update for game build **1.1.1.405907**.
+Current release: metadata version **13**, runtime **1.0.5**, for
+Surviving Mars Relaunched **1.1.1.405907** on Windows.
 [COMPATIBILITY.md](COMPATIBILITY.md) records the scope of those checks.
 
 Debug logging is disabled by default. Feature and diagnostic flags are in
@@ -31,12 +31,18 @@ From the repository root, run:
 
 ```text
 lua tests/compatibility_spec.lua
+lua tests/fp_construction_spec.lua
 ```
 
 The regression checks cover class initialization, reapplication, restoration,
 feature flags, missing APIs, wrapper ownership, unload, and code reload.
+The construction checks cover the inactive starting-point state, snapped
+anchors, duplicate points, placement restrictions, length limits, native
+completion, other construction modes, and disabling snapping/the mod.
 `tests/game_compatibility.lua` contains reversible checks for a disposable
-game session. Completing a passage and saving/reloading a colony require
+game session. `tests/fp_game_construction_spec.lua` is an additional native
+API fixture for a disposable debug session; its full run is pending.
+Completing a passage and saving/reloading a colony require
 manual gameplay checks.
 
 ## Feedback and history

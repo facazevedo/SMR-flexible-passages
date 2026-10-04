@@ -1,12 +1,12 @@
 return PlaceObj('ModDef', {
 	'title', "Flexible Passages",
-	'description', "Adds flexible dome passages: left-click to anchor the passage to a tile, and right-click to undo the last anchor point.\n\nInvalid placement (vanilla rules):\nBend is too sharp\nPassage is too long\nPassage is blocked by terrain, objects, or reserved space\n------------------------------------------------------------\n[IMPORTANT]: Quit and restart the game after enabling this mod to clear cached data.\nTested only on Surviving Mars Relaunched v1.0.7 on Windows 11.\nPlease complain! I can’t fix what I don’t know is broken. Anonymous feedback: https://smr-mods-feedback.fredware.app or github: https://github.com/facazevedo/SMR-flexible-passages/issues",
+	'description', "Adds flexible dome passages: left-click to anchor the passage to a tile, and right-click to undo the last anchor point.\n\nInvalid placement (vanilla rules):\nBend is too sharp\nPassage is too long\nPassage is blocked by terrain, objects, or reserved space\n------------------------------------------------------------\n[IMPORTANT]: Quit and restart the game after enabling this mod to clear cached data.\nCompatibility checked on Surviving Mars Relaunched v1.1.1 (build 405907) on Windows 11.\nPlease complain! I can’t fix what I don’t know is broken. Anonymous feedback: https://smr-mods-feedback.fredware.app or github: https://github.com/facazevedo/SMR-flexible-passages/issues",
 	'short_description', "Adds flexible dome passages",
 	'image', "Mod/FlexiblePassages/Images/final_composed.jpg",
-	'last_changes', "Initialize passage hooks after class rebuilding on game build 405907 and restore owned hooks on unload.",
+	'last_changes', "Updated compatibility for game 1.1.1. Prevents refreshing or releasing anchors before a passage has started.",
 	'id', "FlexiblePassages",
 	'author', "fredware",
-	'version', 12,
+	'version', 13,
 	'lua_revision', 350453,
 	'saved_with_revision', 405907,
 	'code', {
